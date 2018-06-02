@@ -12,3 +12,17 @@ C:\workspace\License\License\obj\Debug\License.csproj.GenerateResource.Cache
 C:\workspace\License\License\obj\Debug\License.csproj.CoreCompileInputs.cache
 C:\workspace\License\License\obj\Debug\License.exe
 C:\workspace\License\License\obj\Debug\License.pdb
+C:\workspace\licenser\License\License\bin\Debug\License.exe.config
+C:\workspace\licenser\License\License\bin\Debug\License.exe
+C:\workspace\licenser\License\License\bin\Debug\License.pdb
+C:\workspace\licenser\License\License\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\workspace\licenser\License\License\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\workspace\licenser\License\License\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\workspace\licenser\License\License\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\workspace\licenser\License\License\obj\Debug\License.csprojResolveAssemblyReference.cache
+C:\workspace\licenser\License\License\obj\Debug\License.Form1.resources
+C:\workspace\licenser\License\License\obj\Debug\License.Properties.Resources.resources
+C:\workspace\licenser\License\License\obj\Debug\License.csproj.GenerateResource.Cache
+C:\workspace\licenser\License\License\obj\Debug\License.csproj.CoreCompileInputs.cache
+C:\workspace\licenser\License\License\obj\Debug\License.exe
+C:\workspace\licenser\License\License\obj\Debug\License.pdb

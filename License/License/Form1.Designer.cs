@@ -44,12 +44,17 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.fileRadioBtn = new System.Windows.Forms.RadioButton();
             this.workTimeProgressBar = new System.Windows.Forms.ProgressBar();
+            this.recursivelyIterateCheckBox = new System.Windows.Forms.CheckBox();
+            this.curentFileLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.fileCounterLbl = new System.Windows.Forms.Label();
+            this.totalFilesLbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // browseFilesBtn
             // 
-            this.browseFilesBtn.Location = new System.Drawing.Point(38, 132);
+            this.browseFilesBtn.Location = new System.Drawing.Point(13, 84);
             this.browseFilesBtn.Name = "browseFilesBtn";
             this.browseFilesBtn.Size = new System.Drawing.Size(52, 34);
             this.browseFilesBtn.TabIndex = 1;
@@ -60,7 +65,7 @@
             // selectedPathLbl
             // 
             this.selectedPathLbl.AutoSize = true;
-            this.selectedPathLbl.Location = new System.Drawing.Point(197, 143);
+            this.selectedPathLbl.Location = new System.Drawing.Point(172, 95);
             this.selectedPathLbl.Name = "selectedPathLbl";
             this.selectedPathLbl.Size = new System.Drawing.Size(10, 13);
             this.selectedPathLbl.TabIndex = 2;
@@ -69,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(106, 143);
+            this.label3.Location = new System.Drawing.Point(81, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 3;
@@ -78,7 +83,7 @@
             // appendLicenseBtn
             // 
             this.appendLicenseBtn.Enabled = false;
-            this.appendLicenseBtn.Location = new System.Drawing.Point(216, 172);
+            this.appendLicenseBtn.Location = new System.Drawing.Point(172, 156);
             this.appendLicenseBtn.Name = "appendLicenseBtn";
             this.appendLicenseBtn.Size = new System.Drawing.Size(96, 59);
             this.appendLicenseBtn.TabIndex = 4;
@@ -89,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(405, 105);
+            this.label2.Location = new System.Drawing.Point(274, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 8;
@@ -98,7 +103,7 @@
             // selectedLicensePathLbl
             // 
             this.selectedLicensePathLbl.AutoSize = true;
-            this.selectedLicensePathLbl.Location = new System.Drawing.Point(491, 105);
+            this.selectedLicensePathLbl.Location = new System.Drawing.Point(360, 60);
             this.selectedLicensePathLbl.Name = "selectedLicensePathLbl";
             this.selectedLicensePathLbl.Size = new System.Drawing.Size(10, 13);
             this.selectedLicensePathLbl.TabIndex = 7;
@@ -106,7 +111,7 @@
             // 
             // browseLicenseFileBtrn
             // 
-            this.browseLicenseFileBtrn.Location = new System.Drawing.Point(347, 94);
+            this.browseLicenseFileBtrn.Location = new System.Drawing.Point(216, 49);
             this.browseLicenseFileBtrn.Name = "browseLicenseFileBtrn";
             this.browseLicenseFileBtrn.Size = new System.Drawing.Size(52, 34);
             this.browseLicenseFileBtrn.TabIndex = 6;
@@ -117,7 +122,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(344, 64);
+            this.label5.Location = new System.Drawing.Point(213, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 13);
             this.label5.TabIndex = 5;
@@ -126,7 +131,7 @@
             // csCheckBox
             // 
             this.csCheckBox.AutoSize = true;
-            this.csCheckBox.Location = new System.Drawing.Point(43, 172);
+            this.csCheckBox.Location = new System.Drawing.Point(18, 124);
             this.csCheckBox.Name = "csCheckBox";
             this.csCheckBox.Size = new System.Drawing.Size(39, 17);
             this.csCheckBox.TabIndex = 9;
@@ -136,7 +141,7 @@
             // inoCheckBox
             // 
             this.inoCheckBox.AutoSize = true;
-            this.inoCheckBox.Location = new System.Drawing.Point(43, 246);
+            this.inoCheckBox.Location = new System.Drawing.Point(18, 198);
             this.inoCheckBox.Name = "inoCheckBox";
             this.inoCheckBox.Size = new System.Drawing.Size(40, 17);
             this.inoCheckBox.TabIndex = 12;
@@ -146,7 +151,7 @@
             // headerCheckBox
             // 
             this.headerCheckBox.AutoSize = true;
-            this.headerCheckBox.Location = new System.Drawing.Point(43, 223);
+            this.headerCheckBox.Location = new System.Drawing.Point(18, 175);
             this.headerCheckBox.Name = "headerCheckBox";
             this.headerCheckBox.Size = new System.Drawing.Size(59, 17);
             this.headerCheckBox.TabIndex = 13;
@@ -156,7 +161,7 @@
             // cppCheckBox
             // 
             this.cppCheckBox.AutoSize = true;
-            this.cppCheckBox.Location = new System.Drawing.Point(43, 195);
+            this.cppCheckBox.Location = new System.Drawing.Point(18, 147);
             this.cppCheckBox.Name = "cppCheckBox";
             this.cppCheckBox.Size = new System.Drawing.Size(44, 17);
             this.cppCheckBox.TabIndex = 14;
@@ -177,7 +182,7 @@
             // 
             this.groupBox1.Controls.Add(this.fileRadioBtn);
             this.groupBox1.Controls.Add(this.folderRadioBtn);
-            this.groupBox1.Location = new System.Drawing.Point(34, 37);
+            this.groupBox1.Location = new System.Drawing.Point(13, 11);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(173, 65);
             this.groupBox1.TabIndex = 16;
@@ -197,17 +202,77 @@
             // 
             // workTimeProgressBar
             // 
-            this.workTimeProgressBar.Location = new System.Drawing.Point(106, 341);
+            this.workTimeProgressBar.Location = new System.Drawing.Point(296, 175);
             this.workTimeProgressBar.Name = "workTimeProgressBar";
             this.workTimeProgressBar.Size = new System.Drawing.Size(206, 23);
             this.workTimeProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.workTimeProgressBar.TabIndex = 17;
             // 
+            // recursivelyIterateCheckBox
+            // 
+            this.recursivelyIterateCheckBox.AutoSize = true;
+            this.recursivelyIterateCheckBox.Checked = true;
+            this.recursivelyIterateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.recursivelyIterateCheckBox.Location = new System.Drawing.Point(84, 124);
+            this.recursivelyIterateCheckBox.Name = "recursivelyIterateCheckBox";
+            this.recursivelyIterateCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.recursivelyIterateCheckBox.TabIndex = 18;
+            this.recursivelyIterateCheckBox.Text = "recursively?";
+            this.recursivelyIterateCheckBox.UseVisualStyleBackColor = true;
+            this.recursivelyIterateCheckBox.CheckedChanged += new System.EventHandler(this.recursivelyIterateCheckBox_CheckedChanged);
+            // 
+            // curentFileLbl
+            // 
+            this.curentFileLbl.AutoSize = true;
+            this.curentFileLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.curentFileLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.curentFileLbl.Location = new System.Drawing.Point(125, 289);
+            this.curentFileLbl.MaximumSize = new System.Drawing.Size(450, 50);
+            this.curentFileLbl.MinimumSize = new System.Drawing.Size(450, 50);
+            this.curentFileLbl.Name = "curentFileLbl";
+            this.curentFileLbl.Size = new System.Drawing.Size(450, 50);
+            this.curentFileLbl.TabIndex = 19;
+            this.curentFileLbl.Text = "-";
+            this.curentFileLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 299);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 24);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Current file: ";
+            // 
+            // fileCounterLbl
+            // 
+            this.fileCounterLbl.AutoSize = true;
+            this.fileCounterLbl.Location = new System.Drawing.Point(296, 223);
+            this.fileCounterLbl.Name = "fileCounterLbl";
+            this.fileCounterLbl.Size = new System.Drawing.Size(10, 13);
+            this.fileCounterLbl.TabIndex = 21;
+            this.fileCounterLbl.Text = "-";
+            // 
+            // totalFilesLbl
+            // 
+            this.totalFilesLbl.AutoSize = true;
+            this.totalFilesLbl.Location = new System.Drawing.Point(487, 229);
+            this.totalFilesLbl.Name = "totalFilesLbl";
+            this.totalFilesLbl.Size = new System.Drawing.Size(10, 13);
+            this.totalFilesLbl.TabIndex = 22;
+            this.totalFilesLbl.Text = "-";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 431);
+            this.ClientSize = new System.Drawing.Size(797, 558);
+            this.Controls.Add(this.totalFilesLbl);
+            this.Controls.Add(this.fileCounterLbl);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.curentFileLbl);
+            this.Controls.Add(this.recursivelyIterateCheckBox);
             this.Controls.Add(this.workTimeProgressBar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cppCheckBox);
@@ -248,6 +313,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton fileRadioBtn;
         private System.Windows.Forms.ProgressBar workTimeProgressBar;
+        private System.Windows.Forms.CheckBox recursivelyIterateCheckBox;
+        private System.Windows.Forms.Label curentFileLbl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label fileCounterLbl;
+        private System.Windows.Forms.Label totalFilesLbl;
     }
 }
 

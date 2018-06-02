@@ -21,9 +21,10 @@ namespace License
         List<string> fileTypes = new List<string>();
         bool isFolder;
         string license = "";
-        int openedCounter = 0;
+        int fileCounter = 0;
         int addedCounter = 0;
-
+        bool recursively;
+        int mappedValue;
 
 
         public Form1()
@@ -94,25 +95,21 @@ namespace License
                 fileTypes.Add(".ino");
             }
 
-            workTimeProgressBar.Value = 50;
+
+            //workTimeProgressBar.Value = 50;
 
             if (isFolder)
             {
+                fileCounter = CountFiles(codePath, fileTypes, recursivelyIterateCheckBox.Checked);
+                totalFilesLbl.Text = fileCounter.ToString();
                 await Task.Factory.StartNew(() =>
-                /*await*/ ProcessDirectory(codePath));
-                //workTimeProgressBar.Value = 0;
-                //Console.WriteLine("done");
-                if (addedCounter == openedCounter)
-                {
-                    Console.WriteLine("done");
-                }
+                    ProcessDirectory(codePath));
 
             }
             else
             {
                 await ProcessFile(codePath);
-                //workTimeProgressBar.Value = 0;
-                //Console.WriteLine("done");
+
             }
 
             
@@ -132,6 +129,8 @@ namespace License
                 foreach (string subdirectory in subdirectoryEntries)
                     ProcessDirectory(subdirectory);
             });
+
+
         }
 
         private Task ProcessFile(string fileName)
@@ -145,10 +144,27 @@ namespace License
                     using (StreamReader reader = File.OpenText(fileName))
                     {
                         Console.WriteLine("Opened file: " + Path.GetFullPath(fileName));
-                        openedCounter++;
 
                         file = reader.ReadToEnd();
+                       
                     }
+
+                    addedCounter++;
+                    Console.WriteLine("counter: " + addedCounter);
+                    mappedValue = (int)Map(addedCounter, 0, fileCounter, 0, 100);
+                    Invoke((MethodInvoker)delegate
+                    {
+                        curentFileLbl.Text = Path.GetFullPath(fileName);
+                        fileCounterLbl.Text = addedCounter.ToString();
+                        if (mappedValue <= 100 && mappedValue >= 0)
+                        {
+                            workTimeProgressBar.Value = mappedValue;
+                        }
+                        if (addedCounter == fileCounter)
+                        {
+                            curentFileLbl.Text = "done";
+                        }
+                    });
                     if ((!file.StartsWith("/**") || !file.StartsWith("//")) && license.Length > 1)
                     {
                         //File.Delete(fileName);
@@ -156,8 +172,6 @@ namespace License
                         await Write(newFile, fileName);
                         
                         Console.WriteLine("added license to file: " + Path.GetFullPath(fileName));
-                        addedCounter++;
-
                     }
                 }
             });
@@ -185,5 +199,39 @@ namespace License
             }
         }
 
+        private void recursivelyIterateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(recursivelyIterateCheckBox.Checked)
+            {
+                recursively = true;
+            }
+            else
+            {
+                recursively = false;
+            }
+        }
+
+        private int CountFiles(string path, List <string> types, bool isRecursive)
+        {
+
+            int counter = 0;
+            foreach(string type in types)
+            {
+                if(isRecursive)
+                    counter += Directory.EnumerateFiles(path, "*" + type, SearchOption.AllDirectories).Count();
+                else
+                {
+                    counter += Directory.EnumerateFiles(path, "*" + type, SearchOption.TopDirectoryOnly).Count();
+                }
+
+            }
+            Console.WriteLine("total files: " + counter);
+            return counter;
+        }
+
+        public static double Map(double value, double fromSource, double toSource, double fromTarget, double toTarget)
+        {
+            return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
+        }
     }
 }
